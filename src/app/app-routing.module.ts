@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { DoarpetComponent } from './components/doarpet/doarpet/doarpet.component';
 import { DoarpetCEPComponent } from './components/doarpetCEP/doarpetCEP.component';
 import { EncontrarpetComponent } from './components/encontrarpet/encontrarpet/encontrarpet.component';
 import { DialogComponent } from './shared/components/dialog/dialog.component';
