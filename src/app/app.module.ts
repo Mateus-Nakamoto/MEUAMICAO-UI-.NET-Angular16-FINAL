@@ -7,7 +7,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { DoarpetComponent } from './components/doarpet/doarpet/doarpet.component';
 import { EncontrarpetComponent } from './components/encontrarpet/encontrarpet/encontrarpet.component';
 import { BaseFormComponent } from './helpers/base-form/base-form.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -30,7 +29,6 @@ import { MainPageComponent } from './components/main-page/main-page.component';
     SignupComponent,
     MenuComponent,
     DashboardComponent,
-    DoarpetComponent,
     DoarpetCEPComponent,
     EncontrarpetComponent,
     BaseFormComponent,
