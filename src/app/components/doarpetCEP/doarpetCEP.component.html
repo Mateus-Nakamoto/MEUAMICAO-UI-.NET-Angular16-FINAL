@@ -1,0 +1,100 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-info p-3">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ms-auto ">
+            <li class="nav-item">
+              <a class="nav-link mx-2" href="user/dashboard">Voltar</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
+          </ul>
+        </div>
+      </div>
+    </nav>
+</header>
+
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+                <div class="panel border bg-white">
+                    <div class="panel-heading">
+                        <h3 class="pt-3 font-weight-bold">Cadastrar doação</h3>
+                    </div>
+                    <div class="panel-body p-3">
+                        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group pt-3">
+                                <label for="petNome" class="control-label">Nome do Pet</label>
+                                <div class="input-field" [class.error]="signUpForm.controls['petNome'].dirty && signUpForm.hasError('required','petNome')"> <input formControlName="petNome" type="text" placeholder=""> </div>
+                            </div>
+                            <small *ngIf="signUpForm.controls['petNome'].dirty && signUpForm.hasError('required','petNome')" class="text-danger">Nome do pet</small>
+                            
+                            <div class="form-group pt-1">
+                                <label for="petNome" class="control-label">Contato (aparecerá para todos)</label>
+                                <div class="input-field" [class.error]="signUpForm.controls['petContato'].dirty && signUpForm.hasError('required','petContato')"> <input formControlName="petContato" type="text" placeholder=""> </div>
+                            </div>
+                            <small *ngIf="signUpForm.controls['petContato'].dirty && signUpForm.hasError('required','petContato')" class="text-danger">Digite seu contato</small>
+
+                            <div class="form-group pt-1">
+                                <label for="petIdade" class="control-label">Idade do Pet</label>
+                                <select class="form-control" id="petIdade" formControlName="petIdade" [class.error]="signUpForm.controls['petIdade'].dirty && signUpForm.hasError('required','petIdade')">
+                                  <option *ngFor="let idade of idades" [value]="idade.idade">{{ idade.idade }}</option>
+                                </select>
+                              </div>
+                              <small *ngIf="signUpForm.controls['petIdade'].dirty && signUpForm.hasError('required','petIdade')" class="text-danger">Digite a idade do pet</small>
+                              
+                              <div class="col-md-8">
+                                <label for="cep" class="control-label">CEP</label>
+                                <input formControlName="cep" class="form-control" id="cep">
+                            
+                              </div>
+
+                            <div class="col-md-6">
+                                <label for="estado" class="control-label">Estado</label>
+                                <select class="form-control" id="estado" formControlName="estado" [class.error]="signUpForm.controls['estado'].dirty && signUpForm.hasError('required','estado')">
+                                  <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.nome }}</option>
+                                </select>
+                                <!--app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.estado')" msgErro="Estado é obrigatório.">
+                                </app-campo-control-erro -->
+                              </div>
+                              <small *ngIf="signUpForm.controls['estado'].dirty && signUpForm.hasError('required','estado')" class="text-danger">Escolha o estado</small>
+
+                              <div class="col-md-10">
+                                <label for="cidade" class="control-label">Cidade</label>
+                                <select class="form-control" id="cidade" formControlName="cidade" [class.error]="signUpForm.controls['cidade'].dirty && signUpForm.hasError('required','cidade')">
+                                  <option *ngFor="let cidade of cidades" [value]="cidade.nome">{{ cidade.nome }}</option>
+                                </select>
+                              </div>
+                              
+                              <small *ngIf="signUpForm.controls['cidade'].dirty && signUpForm.hasError('required','cidade')" class="text-danger">Escolha sua cidade</small>
+                              <div class="col-md-10">
+                                <label for="bairro" class="control-label">Bairro</label>
+                                <div class="input-field" [class.error]="signUpForm.controls['bairro'].dirty && signUpForm.hasError('required','bairro')"> <input formControlName="bairro" type="text" placeholder=""> </div>
+                              </div>
+
+                              <div class="col-md-10">
+                                <label for="rua" class="control-label">Rua</label>
+                                <div class="input-field" [class.error]="signUpForm.controls['rua'].dirty && signUpForm.hasError('required','rua')"> <input formControlName="rua" type="text" placeholder=""> </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                <label for="numero" class="control-label">Número</label>
+                                <div class="input-field" [class.error]="signUpForm.controls['numero'].dirty && signUpForm.hasError('required','numero')"> <input formControlName="numero" type="text" placeholder=""> </div>
+                              </div>
+
+                            <button type="submit" class="btn btn-primary btn-block mt-4 w-100">Anunciar doação responsável</button>
+                            
+                     </form>
+                    </div>     
+
+  
+                </div>
+            </div>
+        </div>
+    </div>
+
+  

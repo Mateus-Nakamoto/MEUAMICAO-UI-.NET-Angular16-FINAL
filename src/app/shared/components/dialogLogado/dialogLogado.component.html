@@ -1,0 +1,21 @@
+<div id="overlay" (click)="generalService.showDialogLogado=false"></div>
+<div id="container">
+    <div id="header">
+    <div *ngFor="let pet of pets">    
+        <img style="height: 380px;" [src]="this.urlPet"
+        alt="..."><br><br>
+        <h5 for="file">Trocar foto do pet</h5>
+        <input type="file" (change)="imageSelected($any($event.target).files[0])">
+     <div class="card-body">
+       <h2 id="card-title" style="font-weight:bold">{{pet.petNome}}</h2>
+       <p class="card-text">
+        <span>{{pet.petIdade}}</span><br>
+        <span style="font-weight:bold">Cidade: </span><span>{{pet.cidade}}</span><br>
+        <span style="font-weight:bold">Estado: </span><span>{{pet.estado}}</span><br>
+        <span style="font-weight:bold">Contato: </span><span>{{pet.petContato}}</span><br>
+    </div>
+    <div id="actions">
+        <button type="button" class="btn btn-outline-primary"(click)="generalService.showDialogLogado=false">Voltar</button>
+    </div>
+</div>
+

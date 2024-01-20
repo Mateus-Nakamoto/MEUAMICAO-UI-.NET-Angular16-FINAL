@@ -1,0 +1,135 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-info p-3">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">MeuAmiCão</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ms-auto ">
+            <li class="nav-item">
+              <a class="nav-link mx-2 active" aria-current="page" href="#">Encontrar amigo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-2" href="user/dashboard">Minhas Doações</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-2" href="user/doarpetcep">Cadastrar Doação</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-2" href="#">Parceiros</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Sobre nós
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Sobre</a></li>
+                <li><a class="dropdown-item" href="#">Facebook</a></li>
+                <li><a class="dropdown-item" href="#">Instagram</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-2" *ngIf="role === '0' " href="login">
+                  Fazer Login</a>
+                  <li class="nav-item dropdown">
+              <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" *ngIf="role === 'User'" href="#">Olá, {{unique_name}}</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="user/dashboard">Minhas Doações</a></li>
+              <li><a class="dropdown-item" (click)="logout()" href="user/encontrarpet">Sair</a></li>
+              </ul>
+          </ul>
+          <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
+          </ul>
+        </div>
+      </div>
+    </nav>
+</header>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+        <div class="panel-body p-3"><br>
+            <h1 class="h4">Encontre um amigo</h1>
+         <form [formGroup]="listar" (ngSubmit)="onSubmit() ">
+             <div class="form-group pt-3">
+              <div class="col-md-6" [ngClass]="aplicaCssErro('estado')">
+                  <label for="estado" class="control-label">Estado</label>
+                  <select class="form-control" id="estado" formControlName="estado">
+                  <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.nome }}</option>
+                  </select>
+              </div>
+              <div class="col-md-9" [ngClass]="aplicaCssErro('cidade')">
+                  <label for="cidade" class="control-label">Cidade</label>
+                  <select class="form-select" id="cidade" formControlName="cidade">
+                  <option *ngFor="let cidade of cidades" [value]="cidade.nome">{{ cidade.nome }}</option>
+                  </select>
+              </div>
+              <div class="col-md-10" [ngClass]="aplicaCssErro('idade')">
+                <label for="idade" class="control-label">Idade</label>
+                <select class="form-select" id="idade" formControlName="idade">
+                <option *ngFor="let idade of idades" [value]="idade.idade">{{ idade.idade }}</option>
+                </select>
+            </div>
+              <div class="nav-item text-nowrap">
+                <button type="button" class="btn btn-outline-primary" (click)="limparFiltros()" >Limpar Filtros</button>
+                <div class="col-6"> <br>
+                  <img class="doar" style="max-width: 180px;" src="..\assets\imagens\nao-compre-um-amigo.webp" type ="button" routerLink="/encontrarpet" />
+                </div>
+            </div>
+        </div>
+        </form> 
+    </div></div>
+      <div class="col-8">
+        <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
+                <div *ngIf="this.procurarEstado == ''"><br><br>
+                   <h6>Escolha o estado e a cidade</h6><br><br>
+                </div>   
+                <div *ngIf="this.procurarEstado != ''"><br><br>
+                   <div *ngIf="this.encontrarPets == 'N'"><br><br>
+                     <h6>Não foram encontrados Pets {{this.CidadeOuEstado}}<h4>{{this.NomearLocal}}</h4></h6><br>
+                    </div></div>
+                <div *ngIf="this.encontrarPets == 'S'"><br><br>
+                   <h6 *ngIf="this.numberOfPets > 1">Foram encontrados {{this.numberOfPets}} Pets {{this.CidadeOuEstado}}<h4>{{this.NomearLocal}}</h4></h6>
+                   <h6 *ngIf="this.numberOfPets < 2">Encontrado {{this.numberOfPets}} Pet {{this.CidadeOuEstado}}<h4>{{this.NomearLocal}}</h4></h6><br>
+                </div>
+    </main>
+      <div class="container-fluid">
+        <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
+            <h2></h2><br>
+                    <div class="row mt-2">
+                         <div class="col-lg-4 pt-3" *ngFor="let pet of pets">
+                            <div *ngFor="let pet of pets">
+                               </div>
+                               <div class="box-shadow">
+                                 <div class="card">
+                                     <img class="img-fluid" (click)="generalService.showDialog=true"  (click)="generalService.getPetId=(pet.id)" type="button" style="height: 200px;"
+                                     [src]="pet.petLinkUrl"onError="this.onerror=null;this.src='https://news.lamattinadigital.com.br/wp-content/uploads/2021/07/as-vantagens-de-adotar-um-vira-lata-1024x627.png'
+                                     " class="card-img-top"
+                                          alt="...">
+                                       <div class="card-body">
+                                         <h6 class="card-title">{{pet.petNome}}</h6>
+                                         <p class="card-text">
+                                          <span class="text">{{pet.petIdade}}</span><br>
+                                          <span>Cidade: {{pet.cidade}}</span><br>
+                                          <span>Estado: {{pet.estado}}</span><br>
+                                          <span>Contato: {{pet.petContato}}</span>     
+                                          <div class="btn-toolbar mb-2 mb-md-0">
+                                              <div class="btn-group me-2">
+                                               <div class="nav-item text-nowrap">
+                                             </div>     
+                                           </div>
+                                        </div>
+                                      <div class="col-6 text-end">
+                                      </div>
+                                  </div>  
+                              </div>
+                          </div>
+                      </div>
+                  </div> 
+             </main>
+        </div>
+      </div>
+  </div>
+</div>

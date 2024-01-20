@@ -1,0 +1,9 @@
+<div id="overlay" (click)="generalService.confirmarDialog=false"></div>
+<div id="container">
+    <div id="header">
+        Deseja cancelar a doação?
+    <div id="actions">
+        <button type="button" (click)="onDelete()" class="btn btn-outline-danger" >Sim</button>
+        <button type="button" class="btn btn-outline-primary"(click)="generalService.confirmarDialog=false">Não</button>
+    </div>
+</div>

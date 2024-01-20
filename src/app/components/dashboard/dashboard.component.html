@@ -1,0 +1,39 @@
+
+<div class="container-fluid">
+  <div class="row">
+      <main class="col-md-9 ms-sm-auto col-lg-11 px-md-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3">
+              <h1 class="h4">Minhas doações</h1>
+              <img class="doar" style="max-width: 200px;" routerLink="/user/doarpetcep" src="..\assets\imagens\fazer-doacao-responsavel.webp" type ="button" />
+              <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="nav-item text-nowrap">
+                    </div>
+              </div>
+          </div>
+
+          <br>                                            
+          <div class="col-12">
+            <div class="row mt-3">
+                <div class="col-lg-3 pt-1" *ngFor="let pet of pets"  >
+                    <div class="box-shadow">
+                        <div class="card">
+                            <img class="img-fluid" type="button" (click)="generalService.getPetId=(pet.id)" (click)="generalService.showDialogLogado=true" style="height: 200px;" [src]="pet.petLinkUrl" class="card-img-top"
+                                alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{pet.petNome}}</h5>
+                                <p class="card-text"><span
+                                        class="text">{{pet.petIdade}}</span><br>  
+                                        <button type ="button" class="btn btn-outline-danger" (click)="generalService.getPetId=(pet.id)" (click)="generalService.confirmarDialog=true" (click)="generalService.blobPetId=('pet.' + pet.id)" style="cursor: pointer;">Cancelar doação</button>
+                                        <div class="btn-toolbar mb-2 mb-md-0">
+                                  </div>
+                                    <div class="col-6 text-end">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+      </main>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<app-menu *ngIf="generalService.isLoggedIn"></app-menu>
+<router-outlet></router-outlet>
+<ng-toast></ng-toast>
+<app-confirmarbox *ngIf="generalService.confirmarDialog"></app-confirmarbox>
+<app-dialog *ngIf="generalService.showDialog"></app-dialog>
+<app-dialog-logado *ngIf="generalService.showDialogLogado"></app-dialog-logado>
